@@ -23,7 +23,6 @@ public class FishApp extends JFrame {
   JLabel locationLabel = new JLabel("Location caught: ");
   JLabel additionalLabel = new JLabel("Additional Info: ");
 
-
   //Create panel 1
   JPanel p1 = new JPanel();
 
@@ -39,22 +38,12 @@ public class FishApp extends JFrame {
   Random id = new Random();  
   int fishID = id.nextInt(1000);
 
-
   //Create log button
   JButton logBtn = new JButton("Log catch!");
 
   //Create load button
   JButton loadBtn = new JButton("Load catches...");
   loadBtn.setBounds(50,50,50,30);
-
-  //Create table
- /*String data[][]={ {"1","Flounder","21","5","9/18/22","Ocean","Chartruse Bucktail"}};    
-  String column[]={"FishId","Species","Length", "Weight", "Date", "Location", "Additional Info"};         
-  JTable fishTable=new JTable(data,column);    
-  fishTable.setBounds(30,40,200,600);          
-  JScrollPane sp=new JScrollPane(fishTable);    */
-
-  
 
   //Set the layout for panel 1
   p1.setLayout(new GridLayout(0,1));
@@ -101,7 +90,6 @@ public class FishApp extends JFrame {
   frame.setLayout(null);
   frame.setVisible(true);
 
-
   //Log catch into database 
     logBtn.addActionListener(new ActionListener() {
 
@@ -118,7 +106,6 @@ public class FishApp extends JFrame {
 
            try {Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sys","root","bddill911");
-// Insert query shouldn't have *
             String query = "INSERT INTO `FishEntry` (FishId, Species, Length, Weight, Date, Location, AdditionalInfo) VALUES (?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
              preparedStmt.setInt (1, fishID);
@@ -193,7 +180,6 @@ public class FishApp extends JFrame {
     });
 
  }
-
 
  public static void main(String[] args) throws ClassNotFoundException 
  {
