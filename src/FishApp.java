@@ -15,7 +15,7 @@ public class FishApp extends JFrame {
   //Create label
   JLabel tab1Label = new JLabel("Log a fish you caught!", SwingConstants.CENTER);
   JLabel tab2Label = new JLabel("This is a directory of all the recorded catches.", SwingConstants.CENTER);
-  JLabel tab3label = new JLabel("<html>I developed this application in order for fisherman like you and me<br/> to be able to log their catches and note down additional info of their trip. <br/>This application was created by Brendan Dill in 2022. <br/>Any questions or concerns contact here <a href='brdxn.github.io'>here</a></html>", SwingConstants.CENTER);
+  JLabel tab3label = new JLabel("<html>I developed this application in order for fisherman like you and me<br/> to be able to log their catches and note down additional info of their trip. <br/>This application was created by Brendan Dill in 2022. <br/>Any questions or concerns contact <a href='brdxn.github.io'>here</a></html>", SwingConstants.CENTER);
   JLabel speciesLabel = new JLabel("Species: ");
   JLabel lengthLabel = new JLabel("Length (inches): ");
   JLabel weightLabel = new JLabel("Weight (pounds): ");
@@ -105,7 +105,7 @@ public class FishApp extends JFrame {
 
 
            try {Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sys","root","bddill911");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sys","root","fishing");
             String query = "INSERT INTO `FishEntry` (FishId, Species, Length, Weight, Date, Location, AdditionalInfo) VALUES (?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
              preparedStmt.setInt (1, fishID);
@@ -133,7 +133,7 @@ public class FishApp extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sys","root","bddill911");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/sys","root","fishing");
             String query = "SELECT * FROM FishEntry;";
             Object rowData[][] = {{"Row1-Column1", "Row1-Column2", "Row1-Column3","Row1-Column4", "Row1-Column5", "Row1-Column6", "Row1-Column7"}};
             // array to hold column names
