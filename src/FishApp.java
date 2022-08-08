@@ -8,20 +8,24 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class FishApp extends JFrame {
-    
-    FishApp() throws ClassNotFoundException {
-  //Create the frame
-  JFrame frame = new JFrame("Fishing Log Application");
-  //Create label
-  JLabel tab1Label = new JLabel("Log a fish you caught!", SwingConstants.CENTER);
-  JLabel tab2Label = new JLabel("This is a directory of all the recorded catches.", SwingConstants.CENTER);
-  JLabel tab3label = new JLabel("<html>I developed this application in order for fisherman like you and me<br/> to be able to log their catches and note down additional info of their trip. <br/>This application was created by Brendan Dill in 2022. <br/>Any questions or concerns contact <a href='brdxn.github.io'>here</a></html>", SwingConstants.CENTER);
-  JLabel speciesLabel = new JLabel("Species: ");
-  JLabel lengthLabel = new JLabel("Length (inches): ");
-  JLabel weightLabel = new JLabel("Weight (pounds): ");
-  JLabel dateLabel = new JLabel("Date caught: ");
-  JLabel locationLabel = new JLabel("Location caught: ");
-  JLabel additionalLabel = new JLabel("Additional Info: ");
+
+    FishApp() {
+        createGUI();
+    }
+
+    public static void createGUI() {
+    //Create the frame
+    JFrame frame = new JFrame("Fishing Log Application");
+    //Create label
+    JLabel tab1Label = new JLabel("Log a fish you caught!", SwingConstants.CENTER);
+    JLabel tab2Label = new JLabel("This is a directory of all the recorded catches.", SwingConstants.CENTER);
+    JLabel tab3label = new JLabel("<html>I developed this application in order for fisherman like you and me<br/> to be able to log their catches and note down additional info of their trip. <br/>This application was created by Brendan Dill in 2022. <br/>Any questions or concerns contact <a href='brdxn.github.io'>here</a></html>", SwingConstants.CENTER);
+    JLabel speciesLabel = new JLabel("Species: ");
+    JLabel lengthLabel = new JLabel("Length (inches): ");
+    JLabel weightLabel = new JLabel("Weight (pounds): ");
+    JLabel dateLabel = new JLabel("Date caught: ");
+    JLabel locationLabel = new JLabel("Location caught: ");
+    JLabel additionalLabel = new JLabel("Additional Info: ");
 
   //Create panel 1
   JPanel p1 = new JPanel();
@@ -116,6 +120,15 @@ public class FishApp extends JFrame {
              preparedStmt.setString(6, location);
              preparedStmt.setString(7, additional);
              preparedStmt.executeUpdate();
+            JOptionPane.showMessageDialog(frame, "Your catch has been successfully logged!");
+            speciesField.setText("common name format");
+            lengthField.setText(null);
+            weightField.setText(null);
+            dateField.setText("mm-dd-yyyy format");
+            locationField.setText("place, city, state format");
+            additionalField.setText(null);
+            
+            
         }
             catch (Exception d) {
             System.out.println("Error found "+ d);
@@ -178,11 +191,10 @@ public class FishApp extends JFrame {
 
         }}
     });
+    }
 
- }
-
- public static void main(String[] args) throws ClassNotFoundException 
+ public static void main(String[] args) 
  {
-  new FishApp();
+    new FishApp();
  }
 }
